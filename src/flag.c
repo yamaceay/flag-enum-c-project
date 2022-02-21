@@ -9,11 +9,12 @@ Flag *new_f () {
 void init_f(Flag *self) {
     *self = (Flag) {
         .__flags = 0,
-        .init_f = init_f,
-        .get_f = get_f,
-        .isSet_f = isSet_f,
-        .set_f = set_f,
-        .reset_f = reset_f,
+        .init = init_f,
+        .get = get_f,
+        .is = is_f,
+        .set = set_f,
+        .reset = reset_f,
+        .print = print_f
     };
 }
 
@@ -25,8 +26,8 @@ uint32_t get_f(Flag* self) {
     return self->__flags;
 }
 
-bool isSet_f(Flag *self, uint32_t aFlag) {
-    return self->get_f(self) & aFlag;
+bool is_f(Flag *self, uint32_t aFlag) {
+    return self->get(self) & aFlag;
 }
 
 void set_f (Flag* self, uint32_t aFlag) {
@@ -34,8 +35,14 @@ void set_f (Flag* self, uint32_t aFlag) {
 }
 
 void reset_f (Flag* self, uint32_t aFlag) {
-    uint32_t flag = self->get_f(self);
+    uint32_t flag = self->get(self);
     flag &= ~aFlag;
-    self->init_f(self);
-    self->set_f(self, flag);
+    self->init(self);
+    self->set(self, flag);
+}
+
+void print_f(Flag* self, char *names) {
+    uint32_t res = self->get(self);
+    uint32_t len = 32;
+    print(res, len, names);
 }

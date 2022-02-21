@@ -27,3 +27,41 @@ uint32_t from_b(bool *bits, uint32_t len) {
 void del_b (bool *bits) {
     free(bits);
 }
+
+void print(uint32_t res, uint32_t len, char *names) {
+    bool* bits = new_b(len);
+    to_b(bits, res, len);
+    
+    if (names) {
+        char delim[3] = ", ";
+        printf("\n{");
+        int i = 0;
+        char *string = strdup(names);
+        char *ptr = strtok(string, delim);
+        while (ptr) {
+            printf("\n\t%10s: %2d", ptr, bits[i]);
+            if (i < len - 1) {
+                printf(", ");
+            }
+            i++;
+            ptr = strtok(NULL, delim);
+        }
+        printf("\n}\n");
+        return;
+    }
+
+    printf("\n");
+    for (int i = 0; i < len; i++) {
+        printf("----");
+    }
+    printf("\n");
+    for (int i = 0; i < len; i++) {
+        printf("%d | ", bits[i]);
+    }
+    printf("\n");
+    for (int i = 0; i < len; i++) {
+        printf("----");
+    }
+    printf("\n");
+    del_b(bits);
+}

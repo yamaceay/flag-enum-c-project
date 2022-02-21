@@ -1,32 +1,50 @@
 #include "flag.h"
 
-void print_bits(Flag* flag, uint32_t len);
+typedef enum state {
+    waiting = 0x1,
+    busy = 0x2,
+    calling = 0x4,
+    ongoing = 0x8,
+    active = 0x10,
+    postponed = 0x20
+} state;
 
 int main() {
-    int len = 5;
+
+    // Set length and initialize
+    int len = 6;
+    char names[] = "waiting, busy, calling, ongoing, active, postponed";
+
     Flag *flag = new_f();
 
-    print_bits(flag, len);
+    printf("\nEmpty: \n");
+    flag->print(flag, names);
 
-    flag->set_f(flag, 0x01);
-    flag->set_f(flag, 0x02);
-
-    print_bits(flag, len);
-
-    flag->reset_f(flag, 0x01);
-    flag->set_f(flag, 0x04);
+    // Set
+    flag->set(flag, waiting);
+    flag->set(flag, postponed);
     
-    print_bits(flag, len);
+    printf("\nSet: \n");
+    flag->print(flag, names);
 
-}
+    // Set multiple
+    flag->set(flag, (uint32_t) busy | calling | active);
 
-void print_bits(Flag* flag, uint32_t len) {
-    uint32_t flag_res = flag->get_f(flag);
-    bool* bits = new_b(len);
-    to_b(bits, flag_res, len);
-    for (int i = 0; i < len; i++) {
-        printf("%d ", bits[i]);
-    }
-    printf("\n");
-    del_b(bits);
+    printf("\nMultiple Set: \n");
+    flag->print(flag, names);
+
+    // Reset 
+    flag->reset(flag, busy);
+
+    printf("\nReset: \n");
+    flag->print(flag, names);
+
+    // Is
+    if (flag->is(flag, (uint32_t) active | waiting)) 
+        flag->reset(flag, (uint32_t) active | waiting);
+        
+    printf("\nMultiple Is | Multiple Reset: \n");
+    flag->print(flag, names);
+
+    del_f(flag);
 }
