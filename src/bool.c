@@ -28,7 +28,7 @@ void del_b (bool *bits) {
     free(bits);
 }
 
-void print(uint32_t res, uint32_t len, char *names) {
+void print(uint32_t res, char *names, uint32_t len) {
     bool* bits = new_b(len);
     to_b(bits, res, len);
     

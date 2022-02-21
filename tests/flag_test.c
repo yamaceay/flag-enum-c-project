@@ -15,36 +15,36 @@ int main() {
     int len = 6;
     char names[] = "waiting, busy, calling, ongoing, active, postponed";
 
-    Flag *flag = new_f();
+    Flag *flag = new_f(names);
 
     printf("\nEmpty: \n");
-    flag->print(flag, names);
+    flag->print(flag);
 
     // Set
     flag->set(flag, waiting);
     flag->set(flag, postponed);
     
     printf("\nSet: \n");
-    flag->print(flag, names);
+    flag->print(flag);
 
     // Set multiple
     flag->set(flag, (uint32_t) busy | calling | active);
 
     printf("\nMultiple Set: \n");
-    flag->print(flag, names);
+    flag->print(flag);
 
     // Reset 
     flag->reset(flag, busy);
 
     printf("\nReset: \n");
-    flag->print(flag, names);
+    flag->print(flag);
 
     // Is
     if (flag->is(flag, (uint32_t) active | waiting)) 
         flag->reset(flag, (uint32_t) active | waiting);
         
     printf("\nMultiple Is | Multiple Reset: \n");
-    flag->print(flag, names);
+    flag->print(flag);
 
     del_f(flag);
 }

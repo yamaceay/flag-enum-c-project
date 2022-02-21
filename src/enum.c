@@ -1,8 +1,8 @@
 #include "enum.h"
 
-Enum *new_e (uint32_t len) {
+Enum *new_e (char *names, uint32_t len) {
     Enum *anEnum = malloc(sizeof(Enum));
-    init_e (anEnum, len);
+    init_e (anEnum, names, len);
     return anEnum;
 }
 
@@ -10,12 +10,14 @@ void del_e (Enum* self) {
     free(self);
 }
 
-void init_e (Enum* self, uint32_t len) {
+void init_e (Enum* self, char *names, uint32_t len) {
     Flag flag;
-    init_f(&flag);
+    init_f(&flag, names);
     *self = (Enum) {
         .flag = flag,
         .__len = len,
+        .getNames = getNames_e,
+        .setNames = setNames_e,
         .init = init_e,
         .get = get_e,
         .is = is_e,
@@ -25,6 +27,16 @@ void init_e (Enum* self, uint32_t len) {
         .reset_all = reset_all_e,
         .print = print_e
     };
+}
+
+char *getNames_e (Enum *self) {
+    Flag *flag = (Flag *) self;
+    return flag->getNames(flag);
+}
+
+void setNames_e (Enum *self, char *newNames) {
+    Flag *flag = (Flag* ) self;
+    flag->setNames(flag, newNames);
 }
 
 uint32_t len_e (Enum *self) {
@@ -65,7 +77,8 @@ void reset_all_e (Enum *self, void *enums, uint32_t enums_len) {
     }
 }
     
-void print_e(Enum* self, char *names) {
+void print_e(Enum* self) {
     uint32_t res = self->get(self);
-    print(res, self->__len, names);
+    char *names = self->getNames(self);
+    print(res, names ,self->__len);
 }
