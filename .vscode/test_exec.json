@@ -1,4 +1,0 @@
-{
-    "enum_test.c": "clang tests/enum_test.c src/enum.c src/flag.c src/bool.c  -o outputs/enumTestOutput -I ./include | ./outputs/enumTestOutput",
-    "flag_test.c": "clang tests/flag_test.c src/flag.c src/bool.c  -o outputs/flagTestOutput -I ./include | ./outputs/flagTestOutput",
-}

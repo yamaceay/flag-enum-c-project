@@ -1,55 +1,64 @@
 #include "enum.h"
 
 // define the enumeration type
-typedef enum state {
-    waiting,
-    busy,
-    calling,
-    ongoing,
-    active,
-    postponed
-} state;
+typedef enum tcp {
+    syn,
+    ack,
+    fin
+} tcp;
 
 int main() {
 
     // set length and configure the names (optional)
-    uint32_t len = 6;
-    char names[] = "waiting, busy, calling, ongoing, active, postponed";
+    uint32_t len = 3;
+    char names[] = "syn, ack, fin";
 
     Enum* enu = new_e(names, len);
 
-    printf("\nEmpty: \n");
+    printf("\nDefault: \n");
     enu->print(enu);
 
-    // set all enums listed below 
-    state enums_set[] = {postponed, ongoing, waiting};
-    enu->set_all(enu, enums_set, 3);
-    
-    printf("\nMultiple set: \n");
-    enu->print(enu);
+    printf("\nI) Open TCP connection: \n");
+    printf("\n1. Client -> Server: \n");
 
-    // reset all enums listed below
-    state enums_reset[] = {ongoing, calling, postponed};
-    enu->reset_all(enu, enums_reset, 3);
-
-    printf("\nMultiple reset: \n");
-    enu->print(enu);
-    
-    // set / reset a single enum
-    enu->reset(enu, ongoing);
-    enu->set(enu, calling);
-
-    printf("\nSet | Reset: \n");
-    enu->print(enu);
-
-    // check if set and reset a enum
-    if (enu->is(enu, waiting)) {
-        enu->reset(enu, waiting);
+    if (~enu->is(enu, syn)) {
+        enu->set(enu, syn);
     }
-
-    printf("\nIs | Reset: \n");
     enu->print(enu);
     
+    printf("\n2. Server -> Client: \n");
+    if (enu->is(enu, syn) & ~enu->is(enu, ack)) {
+        enu->set(enu, ack);
+    }
+    enu->print(enu);
+
+    printf("\n3. Client -> Server: \n");
+    if (enu->is(enu, syn) & enu->is(enu, ack)) {
+        enu->reset(enu, syn);
+    }
+    enu->print(enu);
+    
+        printf("\nII) Close TCP connection: \n");
+    printf("\n1. Client -> Server: \n");
+
+    if (enu->is(enu, ack) & ~enu->is(enu, fin)) {
+        enu->reset(enu, ack);
+        enu->set(enu, fin);
+    }
+    enu->print(enu);
+    
+    printf("\n2. Server -> Client: \n");
+    if (enu->is(enu, fin) & ~enu->is(enu, ack)) {
+        enu->set(enu, ack);
+    }
+    enu->print(enu);
+
+    printf("\n3. Client -> Server: \n");
+    if (enu->is(enu, fin) & enu->is(enu, ack)) {
+        enu->reset(enu, fin);
+    }
+    enu->print(enu);
+
     // free memory
     del_e(enu);
 }
