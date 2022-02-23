@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../inputs/all.c"
 
-#define BUF 128
+
+#define BUF 1024
 
 typedef enum Bool {false, true} bool;
 

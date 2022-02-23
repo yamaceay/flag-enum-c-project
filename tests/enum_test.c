@@ -1,12 +1,6 @@
 #include "enum.h"
 
 // define the enumeration type
-typedef enum tcp {
-    syn,
-    ack,
-    fin
-} tcp;
-
 int main() {
 
     // set length and configure the names (optional)

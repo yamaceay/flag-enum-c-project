@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/_Flag-test.dir/tests/flag_test.c.o CMakeFiles/_Flag-test.dir/src/flag.c.o CMakeFiles/_Flag-test.dir/src/bool.c.o -o Outputs/Flag-out 

@@ -1,13 +1,6 @@
 #include "renum.h"
-// #include <graphics.h>
-void print_font(char *str, Renum *renu);
 
-// define the renumeration type
-typedef enum font {
-    script,
-    italic,
-    big
-} font;
+void print_font(char *str, Renum *renu);
 
 int main() {
 

@@ -1,19 +1,10 @@
 #include "flag.h"
 
-typedef enum state {
-    waiting = 0x1,
-    busy = 0x2,
-    calling = 0x4,
-    ongoing = 0x8,
-    active = 0x10,
-    postponed = 0x20
-} state;
-
 int main() {
 
     // Set length and initialize
-    int len = 6;
-    char names[] = "waiting, busy, calling, ongoing, active, postponed";
+    int len = 8;
+    char names[] = "arrived, waiting, assigned, ordered, prepared, eating, paid, leaving";
 
     Flag *flag = new_f(names);
 
@@ -22,26 +13,26 @@ int main() {
 
     // Set
     flag->set(flag, waiting);
-    flag->set(flag, postponed);
+    flag->set(flag, arrived);
     
     printf("\nSet: \n");
     flag->print(flag);
 
     // Set multiple
-    flag->set(flag, (uint32_t) busy | calling | active);
+    flag->set(flag, (uint32_t) assigned | ordered | eating);
 
     printf("\nMultiple Set: \n");
     flag->print(flag);
 
     // Reset 
-    flag->reset(flag, busy);
+    flag->reset(flag, ordered);
 
     printf("\nReset: \n");
     flag->print(flag);
 
     // Is
-    if (flag->is(flag, (uint32_t) active | waiting)) 
-        flag->reset(flag, (uint32_t) active | waiting);
+    if (flag->is(flag, (uint32_t) arrived | waiting)) 
+        flag->reset(flag, (uint32_t) arrived | waiting);
         
     printf("\nMultiple Is | Multiple Reset: \n");
     flag->print(flag);

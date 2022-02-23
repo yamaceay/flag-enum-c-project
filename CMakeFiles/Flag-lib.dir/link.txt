@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libFlag-lib.a CMakeFiles/Flag-lib.dir/src/flag.c.o CMakeFiles/Flag-lib.dir/src/bool.c.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libFlag-lib.a

@@ -1,0 +1,8 @@
+arrived
+waiting
+assigned
+ordered
+prepared
+eating
+paid
+leaving

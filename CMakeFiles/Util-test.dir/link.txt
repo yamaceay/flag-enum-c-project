@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/Util-test.dir/tests/util_test.c.o CMakeFiles/Util-test.dir/src/util.c.o -o Outputs/Util-out 
