@@ -1,4 +1,7 @@
+#ifndef FLAG_H
+#define FLAG_H
 #include "flag.h"
+#endif
 
 Flag *new_f (char *names) {
     Flag *aFlag = malloc(sizeof(Flag));
@@ -6,7 +9,8 @@ Flag *new_f (char *names) {
     return aFlag;
 }
 
-void init_f(Flag *self, char *names) {
+void init_f(void *_self, char *names) {
+    Flag *self = (Flag *) _self;
     *self = (Flag) {
         .__flags = 0,
         .getNames = getNames_f,
@@ -21,32 +25,39 @@ void init_f(Flag *self, char *names) {
     self->setNames(self, names);
 }
 
-char *getNames_f (Flag *self) {
+char *getNames_f (void *_self) {
+    Flag *self = (Flag *) _self;
     return self->__names;
 }
 
-void setNames_f (Flag *self, char *newNames) {
+void setNames_f (void *_self, char *newNames) {
+    Flag *self = (Flag *) _self;
     memcpy(self->__names, newNames, strlen(newNames));
     self->__names[strlen(newNames)] = 0;
 }
 
-void del_f(Flag *self) {
+void del_f(void *_self) {
+    Flag *self = (Flag *) _self;
     free(self);
 }
 
-uint32_t get_f(Flag* self) {
+uint32_t get_f(void* _self) {
+    Flag *self = (Flag *) _self;
     return self->__flags;
 }
 
-bool is_f(Flag *self, uint32_t aFlag) {
+bool is_f(void *_self, uint32_t aFlag) {
+    Flag *self = (Flag *) _self;
     return self->get(self) & aFlag;
 }
 
-void set_f (Flag* self, uint32_t aFlag) {
+void set_f (void* _self, uint32_t aFlag) {
+    Flag *self = (Flag *) _self;
     self->__flags |= aFlag;
 }
 
-void reset_f (Flag* self, uint32_t aFlag) {
+void reset_f (void* _self, uint32_t aFlag) {   
+    Flag *self = (Flag *) _self;
     uint32_t flag = self->get(self);
     char *names = strdup(self->getNames(self));
     flag &= ~aFlag;
@@ -54,7 +65,8 @@ void reset_f (Flag* self, uint32_t aFlag) {
     self->set(self, flag);
 }
 
-void print_f(Flag* self) {
+void print_f(void* _self) {
+    Flag *self = (Flag *) _self;
     uint32_t res = self->get(self);
     char *names = self->getNames(self);
     uint32_t len = 32;

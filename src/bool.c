@@ -1,4 +1,7 @@
+#ifndef BOOL_H
+#define BOOL_H
 #include "bool.h"
+#endif
 
 bool *new_b (uint32_t num) {
     bool* bits = malloc(sizeof(bool) * num);

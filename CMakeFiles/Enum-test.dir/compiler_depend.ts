@@ -1,2 +1,2 @@
 # CMAKE generated file: DO NOT EDIT!
-# Timestamp file for compiler generated dependencies management for Enum-test.
+# Timestamp file for compiler generated dependencies management for enum-test.

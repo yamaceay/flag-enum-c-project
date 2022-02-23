@@ -85,6 +85,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/local/Cellar/cmake/3.22.2/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/local/Cellar/cmake/3.22.2/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/local/Cellar/cmake/3.22.2/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/local/Cellar/cmake/3.22.2/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/local/Cellar/cmake/3.22.2/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/local/Cellar/cmake/3.22.2/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Applications/uni/rnvs/C-Flags/CMakeFiles /Applications/uni/rnvs/C-Flags//CMakeFiles/progress.marks
@@ -117,65 +162,115 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Input-lib
+# Target rules for targets named reflag
 
 # Build rule for target.
-Input-lib: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Input-lib
-.PHONY : Input-lib
+reflag: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 reflag
+.PHONY : reflag
 
 # fast build rule for target.
-Input-lib/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Input-lib.dir/build.make CMakeFiles/Input-lib.dir/build
-.PHONY : Input-lib/fast
+reflag/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/build
+.PHONY : reflag/fast
 
 #=============================================================================
-# Target rules for targets named Flag-test
+# Target rules for targets named input
 
 # Build rule for target.
-Flag-test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Flag-test
-.PHONY : Flag-test
+input: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 input
+.PHONY : input
 
 # fast build rule for target.
-Flag-test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flag-test.dir/build.make CMakeFiles/Flag-test.dir/build
-.PHONY : Flag-test/fast
+input/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/input.dir/build.make CMakeFiles/input.dir/build
+.PHONY : input/fast
 
 #=============================================================================
-# Target rules for targets named Enum-test
+# Target rules for targets named flag-test
 
 # Build rule for target.
-Enum-test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Enum-test
-.PHONY : Enum-test
+flag-test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 flag-test
+.PHONY : flag-test
 
 # fast build rule for target.
-Enum-test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Enum-test.dir/build.make CMakeFiles/Enum-test.dir/build
-.PHONY : Enum-test/fast
+flag-test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/flag-test.dir/build.make CMakeFiles/flag-test.dir/build
+.PHONY : flag-test/fast
 
 #=============================================================================
-# Target rules for targets named Renum-test
+# Target rules for targets named flag-test-run
 
 # Build rule for target.
-Renum-test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Renum-test
-.PHONY : Renum-test
+flag-test-run: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 flag-test-run
+.PHONY : flag-test-run
 
 # fast build rule for target.
-Renum-test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renum-test.dir/build.make CMakeFiles/Renum-test.dir/build
-.PHONY : Renum-test/fast
+flag-test-run/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/flag-test-run.dir/build.make CMakeFiles/flag-test-run.dir/build
+.PHONY : flag-test-run/fast
+
+#=============================================================================
+# Target rules for targets named enum-test
+
+# Build rule for target.
+enum-test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 enum-test
+.PHONY : enum-test
+
+# fast build rule for target.
+enum-test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/build
+.PHONY : enum-test/fast
+
+#=============================================================================
+# Target rules for targets named enum-test-run
+
+# Build rule for target.
+enum-test-run: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 enum-test-run
+.PHONY : enum-test-run
+
+# fast build rule for target.
+enum-test-run/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test-run.dir/build.make CMakeFiles/enum-test-run.dir/build
+.PHONY : enum-test-run/fast
+
+#=============================================================================
+# Target rules for targets named renum-test
+
+# Build rule for target.
+renum-test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 renum-test
+.PHONY : renum-test
+
+# fast build rule for target.
+renum-test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/renum-test.dir/build.make CMakeFiles/renum-test.dir/build
+.PHONY : renum-test/fast
+
+#=============================================================================
+# Target rules for targets named renum-test-run
+
+# Build rule for target.
+renum-test-run: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 renum-test-run
+.PHONY : renum-test-run
+
+# fast build rule for target.
+renum-test-run/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/renum-test-run.dir/build.make CMakeFiles/renum-test-run.dir/build
+.PHONY : renum-test-run/fast
 
 src/bool.o: src/bool.c.o
 .PHONY : src/bool.o
 
 # target to build an object file
 src/bool.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flag-test.dir/build.make CMakeFiles/Flag-test.dir/src/bool.c.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Enum-test.dir/build.make CMakeFiles/Enum-test.dir/src/bool.c.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renum-test.dir/build.make CMakeFiles/Renum-test.dir/src/bool.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/bool.c.o
 .PHONY : src/bool.c.o
 
 src/bool.i: src/bool.c.i
@@ -183,9 +278,7 @@ src/bool.i: src/bool.c.i
 
 # target to preprocess a source file
 src/bool.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flag-test.dir/build.make CMakeFiles/Flag-test.dir/src/bool.c.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Enum-test.dir/build.make CMakeFiles/Enum-test.dir/src/bool.c.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renum-test.dir/build.make CMakeFiles/Renum-test.dir/src/bool.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/bool.c.i
 .PHONY : src/bool.c.i
 
 src/bool.s: src/bool.c.s
@@ -193,9 +286,7 @@ src/bool.s: src/bool.c.s
 
 # target to generate assembly for a file
 src/bool.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flag-test.dir/build.make CMakeFiles/Flag-test.dir/src/bool.c.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Enum-test.dir/build.make CMakeFiles/Enum-test.dir/src/bool.c.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renum-test.dir/build.make CMakeFiles/Renum-test.dir/src/bool.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/bool.c.s
 .PHONY : src/bool.c.s
 
 src/enum.o: src/enum.c.o
@@ -203,7 +294,7 @@ src/enum.o: src/enum.c.o
 
 # target to build an object file
 src/enum.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Enum-test.dir/build.make CMakeFiles/Enum-test.dir/src/enum.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/enum.c.o
 .PHONY : src/enum.c.o
 
 src/enum.i: src/enum.c.i
@@ -211,7 +302,7 @@ src/enum.i: src/enum.c.i
 
 # target to preprocess a source file
 src/enum.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Enum-test.dir/build.make CMakeFiles/Enum-test.dir/src/enum.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/enum.c.i
 .PHONY : src/enum.c.i
 
 src/enum.s: src/enum.c.s
@@ -219,7 +310,7 @@ src/enum.s: src/enum.c.s
 
 # target to generate assembly for a file
 src/enum.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Enum-test.dir/build.make CMakeFiles/Enum-test.dir/src/enum.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/enum.c.s
 .PHONY : src/enum.c.s
 
 src/flag.o: src/flag.c.o
@@ -227,9 +318,7 @@ src/flag.o: src/flag.c.o
 
 # target to build an object file
 src/flag.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flag-test.dir/build.make CMakeFiles/Flag-test.dir/src/flag.c.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Enum-test.dir/build.make CMakeFiles/Enum-test.dir/src/flag.c.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renum-test.dir/build.make CMakeFiles/Renum-test.dir/src/flag.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/flag.c.o
 .PHONY : src/flag.c.o
 
 src/flag.i: src/flag.c.i
@@ -237,9 +326,7 @@ src/flag.i: src/flag.c.i
 
 # target to preprocess a source file
 src/flag.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flag-test.dir/build.make CMakeFiles/Flag-test.dir/src/flag.c.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Enum-test.dir/build.make CMakeFiles/Enum-test.dir/src/flag.c.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renum-test.dir/build.make CMakeFiles/Renum-test.dir/src/flag.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/flag.c.i
 .PHONY : src/flag.c.i
 
 src/flag.s: src/flag.c.s
@@ -247,9 +334,7 @@ src/flag.s: src/flag.c.s
 
 # target to generate assembly for a file
 src/flag.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flag-test.dir/build.make CMakeFiles/Flag-test.dir/src/flag.c.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Enum-test.dir/build.make CMakeFiles/Enum-test.dir/src/flag.c.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renum-test.dir/build.make CMakeFiles/Renum-test.dir/src/flag.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/flag.c.s
 .PHONY : src/flag.c.s
 
 src/input.o: src/input.c.o
@@ -257,7 +342,7 @@ src/input.o: src/input.c.o
 
 # target to build an object file
 src/input.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Input-lib.dir/build.make CMakeFiles/Input-lib.dir/src/input.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/input.dir/build.make CMakeFiles/input.dir/src/input.c.o
 .PHONY : src/input.c.o
 
 src/input.i: src/input.c.i
@@ -265,7 +350,7 @@ src/input.i: src/input.c.i
 
 # target to preprocess a source file
 src/input.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Input-lib.dir/build.make CMakeFiles/Input-lib.dir/src/input.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/input.dir/build.make CMakeFiles/input.dir/src/input.c.i
 .PHONY : src/input.c.i
 
 src/input.s: src/input.c.s
@@ -273,7 +358,7 @@ src/input.s: src/input.c.s
 
 # target to generate assembly for a file
 src/input.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Input-lib.dir/build.make CMakeFiles/Input-lib.dir/src/input.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/input.dir/build.make CMakeFiles/input.dir/src/input.c.s
 .PHONY : src/input.c.s
 
 src/renum.o: src/renum.c.o
@@ -281,7 +366,7 @@ src/renum.o: src/renum.c.o
 
 # target to build an object file
 src/renum.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renum-test.dir/build.make CMakeFiles/Renum-test.dir/src/renum.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/renum.c.o
 .PHONY : src/renum.c.o
 
 src/renum.i: src/renum.c.i
@@ -289,7 +374,7 @@ src/renum.i: src/renum.c.i
 
 # target to preprocess a source file
 src/renum.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renum-test.dir/build.make CMakeFiles/Renum-test.dir/src/renum.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/renum.c.i
 .PHONY : src/renum.c.i
 
 src/renum.s: src/renum.c.s
@@ -297,80 +382,80 @@ src/renum.s: src/renum.c.s
 
 # target to generate assembly for a file
 src/renum.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renum-test.dir/build.make CMakeFiles/Renum-test.dir/src/renum.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/renum.c.s
 .PHONY : src/renum.c.s
 
-tests/enum_test.o: tests/enum_test.c.o
-.PHONY : tests/enum_test.o
+test/enum_test.o: test/enum_test.c.o
+.PHONY : test/enum_test.o
 
 # target to build an object file
-tests/enum_test.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Enum-test.dir/build.make CMakeFiles/Enum-test.dir/tests/enum_test.c.o
-.PHONY : tests/enum_test.c.o
+test/enum_test.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/test/enum_test.c.o
+.PHONY : test/enum_test.c.o
 
-tests/enum_test.i: tests/enum_test.c.i
-.PHONY : tests/enum_test.i
+test/enum_test.i: test/enum_test.c.i
+.PHONY : test/enum_test.i
 
 # target to preprocess a source file
-tests/enum_test.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Enum-test.dir/build.make CMakeFiles/Enum-test.dir/tests/enum_test.c.i
-.PHONY : tests/enum_test.c.i
+test/enum_test.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/test/enum_test.c.i
+.PHONY : test/enum_test.c.i
 
-tests/enum_test.s: tests/enum_test.c.s
-.PHONY : tests/enum_test.s
+test/enum_test.s: test/enum_test.c.s
+.PHONY : test/enum_test.s
 
 # target to generate assembly for a file
-tests/enum_test.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Enum-test.dir/build.make CMakeFiles/Enum-test.dir/tests/enum_test.c.s
-.PHONY : tests/enum_test.c.s
+test/enum_test.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/test/enum_test.c.s
+.PHONY : test/enum_test.c.s
 
-tests/flag_test.o: tests/flag_test.c.o
-.PHONY : tests/flag_test.o
+test/flag_test.o: test/flag_test.c.o
+.PHONY : test/flag_test.o
 
 # target to build an object file
-tests/flag_test.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flag-test.dir/build.make CMakeFiles/Flag-test.dir/tests/flag_test.c.o
-.PHONY : tests/flag_test.c.o
+test/flag_test.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/flag-test.dir/build.make CMakeFiles/flag-test.dir/test/flag_test.c.o
+.PHONY : test/flag_test.c.o
 
-tests/flag_test.i: tests/flag_test.c.i
-.PHONY : tests/flag_test.i
+test/flag_test.i: test/flag_test.c.i
+.PHONY : test/flag_test.i
 
 # target to preprocess a source file
-tests/flag_test.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flag-test.dir/build.make CMakeFiles/Flag-test.dir/tests/flag_test.c.i
-.PHONY : tests/flag_test.c.i
+test/flag_test.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/flag-test.dir/build.make CMakeFiles/flag-test.dir/test/flag_test.c.i
+.PHONY : test/flag_test.c.i
 
-tests/flag_test.s: tests/flag_test.c.s
-.PHONY : tests/flag_test.s
+test/flag_test.s: test/flag_test.c.s
+.PHONY : test/flag_test.s
 
 # target to generate assembly for a file
-tests/flag_test.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flag-test.dir/build.make CMakeFiles/Flag-test.dir/tests/flag_test.c.s
-.PHONY : tests/flag_test.c.s
+test/flag_test.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/flag-test.dir/build.make CMakeFiles/flag-test.dir/test/flag_test.c.s
+.PHONY : test/flag_test.c.s
 
-tests/renum_test.o: tests/renum_test.c.o
-.PHONY : tests/renum_test.o
+test/renum_test.o: test/renum_test.c.o
+.PHONY : test/renum_test.o
 
 # target to build an object file
-tests/renum_test.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renum-test.dir/build.make CMakeFiles/Renum-test.dir/tests/renum_test.c.o
-.PHONY : tests/renum_test.c.o
+test/renum_test.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/renum-test.dir/build.make CMakeFiles/renum-test.dir/test/renum_test.c.o
+.PHONY : test/renum_test.c.o
 
-tests/renum_test.i: tests/renum_test.c.i
-.PHONY : tests/renum_test.i
+test/renum_test.i: test/renum_test.c.i
+.PHONY : test/renum_test.i
 
 # target to preprocess a source file
-tests/renum_test.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renum-test.dir/build.make CMakeFiles/Renum-test.dir/tests/renum_test.c.i
-.PHONY : tests/renum_test.c.i
+test/renum_test.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/renum-test.dir/build.make CMakeFiles/renum-test.dir/test/renum_test.c.i
+.PHONY : test/renum_test.c.i
 
-tests/renum_test.s: tests/renum_test.c.s
-.PHONY : tests/renum_test.s
+test/renum_test.s: test/renum_test.c.s
+.PHONY : test/renum_test.s
 
 # target to generate assembly for a file
-tests/renum_test.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renum-test.dir/build.make CMakeFiles/Renum-test.dir/tests/renum_test.c.s
-.PHONY : tests/renum_test.c.s
+test/renum_test.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/renum-test.dir/build.make CMakeFiles/renum-test.dir/test/renum_test.c.s
+.PHONY : test/renum_test.c.s
 
 # Help Target
 help:
@@ -379,11 +464,19 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... Enum-test"
-	@echo "... Flag-test"
-	@echo "... Input-lib"
-	@echo "... Renum-test"
+	@echo "... enum-test-run"
+	@echo "... flag-test-run"
+	@echo "... renum-test-run"
+	@echo "... enum-test"
+	@echo "... flag-test"
+	@echo "... input"
+	@echo "... reflag"
+	@echo "... renum-test"
 	@echo "... src/bool.o"
 	@echo "... src/bool.i"
 	@echo "... src/bool.s"
@@ -399,15 +492,15 @@ help:
 	@echo "... src/renum.o"
 	@echo "... src/renum.i"
 	@echo "... src/renum.s"
-	@echo "... tests/enum_test.o"
-	@echo "... tests/enum_test.i"
-	@echo "... tests/enum_test.s"
-	@echo "... tests/flag_test.o"
-	@echo "... tests/flag_test.i"
-	@echo "... tests/flag_test.s"
-	@echo "... tests/renum_test.o"
-	@echo "... tests/renum_test.i"
-	@echo "... tests/renum_test.s"
+	@echo "... test/enum_test.o"
+	@echo "... test/enum_test.i"
+	@echo "... test/enum_test.s"
+	@echo "... test/flag_test.o"
+	@echo "... test/flag_test.i"
+	@echo "... test/flag_test.s"
+	@echo "... test/renum_test.o"
+	@echo "... test/renum_test.i"
+	@echo "... test/renum_test.s"
 .PHONY : help
 
 

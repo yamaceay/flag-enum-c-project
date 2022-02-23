@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libbool.a CMakeFiles/bool.dir/src/bool.c.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib libbool.a

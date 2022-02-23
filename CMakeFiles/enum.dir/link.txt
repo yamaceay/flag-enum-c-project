@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libenum.a CMakeFiles/enum.dir/src/enum.c.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib libenum.a

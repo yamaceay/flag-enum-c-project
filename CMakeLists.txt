@@ -1,24 +1,61 @@
 cmake_minimum_required(VERSION 3.5.1)
-project(Flags)
-
 set(CMAKE_C_STANDARD 99)
 
-add_executable(Input-lib src/input.c include/input.h)
-target_include_directories(Input-lib PUBLIC include)
-set_target_properties(Input-lib PROPERTIES OUTPUT_NAME "Outputs/Input-out")
+project(reflag VERSION 1.4.0 DESCRIPTION "modern flags & enums")
 
-add_executable(Flag-test tests/flag_test.c src/flag.c src/bool.c include/flag.h include/bool.h)
-target_include_directories(Flag-test PUBLIC include)
-add_dependencies(Flag-test Input-lib)
-set_target_properties(Flag-test PROPERTIES OUTPUT_NAME "Outputs/Flag-out")
+add_library (
+    reflag SHARED src/bool.c src/flag.c src/enum.c 
+    src/renum.c include/reflag.h include/bool.h 
+    include/flag.h include/enum.h include/renum.h
+)
+include_directories(include)
+include_directories(src)
+set_target_properties(
+    reflag PROPERTIES 
+    VERSION ${PROJECT_VERSION}
+    PUBLIC_HEADER include/reflag.h
+)
 
-add_executable(Enum-test tests/enum_test.c src/enum.c src/flag.c src/bool.c include/enum.h include/flag.h include/bool.h)
-target_include_directories(Enum-test PUBLIC include)
-add_dependencies(Enum-test Input-lib)
-set_target_properties(Enum-test PROPERTIES OUTPUT_NAME "Outputs/Enum-out")
+include(GNUInstallDirs)
 
-add_executable(Renum-test tests/renum_test.c src/renum.c src/flag.c src/bool.c include/renum.h include/flag.h include/bool.h)
-target_include_directories(Renum-test PUBLIC include)
-add_dependencies(Renum-test Input-lib)
-set_target_properties(Renum-test PROPERTIES OUTPUT_NAME "Outputs/Renum-out")
+install(TARGETS reflag
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
 
+configure_file(reflag.pc.in reflag.pc @ONLY)
+install(FILES ${CMAKE_BINARY_DIR}/reflag.pc DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig)
+
+add_executable(input src/input.c include/input.h)
+target_link_libraries(input PUBLIC reflag)
+set_target_properties(input PROPERTIES OUTPUT_NAME "Outputs/Input")
+
+function(make_test test_file)
+    add_executable(${test_file}-test test/${test_file}_test.c)
+    target_link_libraries(${test_file}-test PUBLIC reflag)
+    set_target_properties(${test_file}-test PROPERTIES 
+        OUTPUT_NAME Outputs/${test_file}_test)
+endfunction()
+
+function(build_test test_file input_path is_flag) 
+    add_custom_target(
+        ${test_file}-test-run
+        COMMAND make input
+        COMMAND ${input_path}/input ${is_flag}
+        COMMAND make ${test_file}-test
+        COMMENT Run ${test_file} Test
+    )
+endfunction()
+
+set(test_files flag ; enum ; renum)
+set(are_flags t ; f ; f)
+
+list(LENGTH test_files num_test_files)
+math(EXPR len "${num_test_files} - 1")
+
+foreach(val RANGE ${len})
+    list(GET test_files ${val} test_file)
+    list(GET are_flags ${val} is_flag)
+    make_test(${test_file})
+    build_test(${test_file} ./outputs ${is_flag})
+endforeach()

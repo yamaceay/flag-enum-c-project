@@ -1,4 +1,7 @@
+#ifndef INPUT_H
+#define INPUT_H
 #include "input.h"
+#endif
 
 char *concat (char *str1, char *str2) {
     char *str;

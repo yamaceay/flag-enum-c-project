@@ -1,4 +1,7 @@
+#ifndef RENUM_H
+#define RENUM_H
 #include "renum.h"
+#endif
 
 Renum *new_r (char *names, uint32_t len) {
     Renum *aRenum = malloc(sizeof(Renum));
@@ -10,7 +13,8 @@ void del_r (Renum* self) {
     free(self);
 }
 
-void init_r (Renum* self, char *names, uint32_t len) {
+void init_r (void *_self, char *names, uint32_t len) {
+    Renum *self = (Renum *) _self;
     Flag flag;
     init_f(&flag, names);
     *self = (Renum) {
@@ -20,82 +24,66 @@ void init_r (Renum* self, char *names, uint32_t len) {
         .setNames = setNames_r,
         .init = init_r,
         .get = get_r,
-        .is = is_r,
+        .all = all_r,
+        .any = any_r,
         .set = set_r,
         .reset = reset_r,
-        .is_all = is_all_r,
-        .is_any = is_any_r,
-        .set_all = set_all_r,
-        .reset_all = reset_all_r,
         .print = print_r
     };
 }
 
-char *getNames_r (Renum *self) {
-    Flag *flag = (Flag *) self;
-    return flag->getNames(flag);
+char *getNames_r (void *_self) {
+    Flag *self = (Flag *) _self;
+    return self->getNames(self);
 }
 
-void setNames_r (Renum *self, char *newNames) {
-    Flag *flag = (Flag* ) self;
-    flag->setNames(flag, newNames);
+void setNames_r (void *_self, char *newNames) {
+    Flag *self = (Flag *) _self;
+    self->setNames(self, newNames);
 }
 
-uint32_t len_r (Renum *self) {
+uint32_t len_r (void *_self) {
+    Renum *self = (Renum *) _self;
     return self->__len;
 }
 
-uint32_t get_r (Renum* self) {
-    Flag* flag = (Flag*) self;
-    return flag->get(flag);
+uint32_t get_r (void *_self) {
+    Flag *self = (Flag *) _self;
+    return self->get(self);
 }
 
-bool is_r (Renum *self, uint32_t aRenum) {
-    Flag* flag = (Flag*) self;
-    return flag->is(flag, 1 << aRenum);
-}
-
-void set_r (Renum* self, uint32_t aRenum) {
-    Flag* flag = (Flag*) self;
-    flag->set(flag, 1 << aRenum);
-}
-
-void reset_r (Renum* self, uint32_t aRenum) {
-    Flag* flag = (Flag*) self;
-    flag->reset(flag, 1 << aRenum);
-}
-
-bool is_all_r (Renum *self, void *renums, uint32_t renums_len) {
-    uint32_t *renums_int = (uint32_t *) renums;
+bool all_r (void *_self, uint32_t *renums, uint32_t renums_len) {
+    Flag *self = (Flag *) _self;
     for (int i = 0; i < renums_len; i++) {
-        if (~self->is(self, renums_int[i])) return false;
+        if (~self->is(self, 1 << renums[i])) return false;
     }
-    return true;
+    return true;    
 }
 
-bool is_any_r (Renum *self, void *renums, uint32_t renums_len) {
-    uint32_t *renums_int = (uint32_t *) renums;
+bool any_r (void *_self, uint32_t *renums, uint32_t renums_len) {
+    Flag *self = (Flag *) _self;
     for (int i = 0; i < renums_len; i++) {
-        if (self->is(self, renums_int[i])) return true;
+        if (self->is(self, 1 << renums[i])) return true;
     }
-    return false;
+    return false;    
 }
 
-void set_all_r (Renum* self, void *renums, uint32_t renums_len) {
-    uint32_t *renums_int = (uint32_t *) renums;
+void set_r (void *_self, uint32_t *renums, uint32_t renums_len) {
+    Flag *self = (Flag *) _self;
     for (int i = 0; i < renums_len; i++) {
-        self->set(self, renums_int[i]);
+        self->set(self, 1 << renums[i]);
     }
 }
 
-void reset_all_r (Renum *self, void *renums, uint32_t renums_len) {
-    uint32_t *renums_int = (uint32_t *) renums;
+void reset_r (void *_self, uint32_t *renums, uint32_t renums_len) {
+    Flag *self = (Flag *) _self;
     for (int i = 0; i < renums_len; i++) {
-        self->reset(self, renums_int[i]);
+        self->reset(self, 1 << renums[i]);
     }
 }
     
-void print_r(Renum* self) {
+void print_r(void *_self) {
+    Renum* self = (Renum *)_self;
     uint32_t res = self->get(self);
     char *names = self->getNames(self);
     print(res, names ,self->__len);

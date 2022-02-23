@@ -1,2 +1,2 @@
-# Empty dependencies file for Flag-test.
+# Empty dependencies file for flag-test.
 # This may be replaced when dependencies are built.

@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc librenum.a CMakeFiles/renum.dir/src/renum.c.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib librenum.a

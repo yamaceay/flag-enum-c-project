@@ -1,23 +1,23 @@
 typedef enum restaurant {
-  arrived,
-  waiting,
-  assigned,
-  ordered,
-  prepared,
-  eating,
-  paid,
-  leaving
+  arrived = 1,
+  waiting = 2,
+  assigned = 4,
+  ordered = 8,
+  prepared = 16,
+  eating = 32,
+  paid = 64,
+  leaving = 128
 } restaurant;
 
 typedef enum tcp_connection {
-  syn,
-  ack,
-  fin
+  syn = 1,
+  ack = 2,
+  fin = 4
 } tcp_connection;
 
 typedef enum font {
-  script,
-  italic,
-  big
+  script = 1,
+  italic = 2,
+  big = 4
 } font;
 

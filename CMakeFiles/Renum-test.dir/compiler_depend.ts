@@ -1,2 +1,2 @@
 # CMAKE generated file: DO NOT EDIT!
-# Timestamp file for compiler generated dependencies management for Renum-test.
+# Timestamp file for compiler generated dependencies management for renum-test.

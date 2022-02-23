@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libRenum-lib.a CMakeFiles/Renum-lib.dir/src/renum.c.o CMakeFiles/Renum-lib.dir/src/flag.c.o CMakeFiles/Renum-lib.dir/src/bool.c.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib libRenum-lib.a

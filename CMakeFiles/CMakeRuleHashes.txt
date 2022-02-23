@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+86041581ad926cd1bf252b94c5529a05 CMakeFiles/enum-test-run
+41f80c801a6acaeb080a7d23df79b06a CMakeFiles/flag-test-run
+73bfb128123993977bcc564a275c0702 CMakeFiles/renum-test-run

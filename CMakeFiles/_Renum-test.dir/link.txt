@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/cc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/_Renum-test.dir/tests/renum_test.c.o CMakeFiles/_Renum-test.dir/src/renum.c.o CMakeFiles/_Renum-test.dir/src/flag.c.o CMakeFiles/_Renum-test.dir/src/bool.c.o -o Outputs/Renum-out 
