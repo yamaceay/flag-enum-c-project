@@ -73,21 +73,34 @@ void write_enum(char *file, char *mode, char *name, char *res) {
     fprintf(fp, "%s", code);
     fclose(fp);
     free(res);
+    free(code);
 }
 
 int main(int argc, char **argv) {
-    if (argc != 2) return 1;
-    bool flag = strcmp(argv[1], "t") == 0;
+    char *dest_wdir = "";
+    bool flag;
+    if (argc > 3) return 1;
+    if (argc == 3) {
+        flag = strcmp(argv[1], "t") == 0;
+        dest_wdir = concat(dest_wdir, argv[2]);
+    }
+    if (argc < 3) dest_wdir = concat(dest_wdir, ".");
+    if (argc < 2) flag = false;
 
     struct dirent *entry;
-    char *dest_path = "./inputs/all.c";
-    
+
+    char *dest_dir = strdup(dest_wdir); 
+    dest_dir = concat(dest_dir, "/input");
+    char *dest_path = strdup(dest_dir);
+    dest_path = concat(dest_path, "/all.c");
+
     FILE *fp = fopen(dest_path, "w");
+    if (!fp) return 1;
     fclose(fp);
 
     DIR *dp;
 
-    dp = opendir("inputs");
+    dp = opendir(dest_dir);
 
     while((entry = readdir(dp))) {
         if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
@@ -101,11 +114,17 @@ int main(int argc, char **argv) {
         if (strcmp(file_ext, "txt") == 0) {
             char *name;
             char *path = "";
-            path = concat(path, "inputs/");
+            path = concat(path, dest_dir);
+            path = concat(path, "/");
             path = concat(path, entry->d_name);
             char *data = read_enum(path, NULL, &name, flag);
             write_enum(dest_path, "a", name, data);
+            free(path);
         }
+        free(temp_file_name);
     }
     closedir(dp);
+    free(dest_path);
+    free(dest_dir);
+    free(dest_wdir);
 }

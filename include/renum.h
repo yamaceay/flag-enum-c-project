@@ -3,8 +3,7 @@
 #include "flag.h"
 #endif
 
-typedef struct _Renum Renum;
-typedef struct _Renum {
+struct _Renum {
     Flag flag;
     uint32_t __len;
     
@@ -21,7 +20,8 @@ typedef struct _Renum {
     void (*reset) (void *_self, uint32_t *renums, uint32_t renums_len);
     
     void (*print) (void *_self);
-} Renum;
+};
+typedef struct _Renum Renum;
 
 Renum* new_r (char *names, uint32_t len);
 void del_r(Renum *self);

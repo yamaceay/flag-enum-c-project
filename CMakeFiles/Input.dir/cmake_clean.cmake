@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/input.dir/src/input.c.o"
   "CMakeFiles/input.dir/src/input.c.o.d"
-  "Outputs/Input"
-  "Outputs/Input.pdb"
+  "output/input"
+  "output/input.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

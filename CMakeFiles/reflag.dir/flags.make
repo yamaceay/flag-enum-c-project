@@ -4,7 +4,7 @@
 # compile C with /Library/Developer/CommandLineTools/usr/bin/cc
 C_DEFINES = -Dreflag_EXPORTS
 
-C_INCLUDES = -I/Applications/uni/rnvs/C-Flags/include -I/Applications/uni/rnvs/C-Flags/src
+C_INCLUDES = -I/Applications/uni/rnvs/reflag/include -I/Applications/uni/rnvs/reflag/src
 
 C_FLAGS =  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -fPIC -std=gnu99
 

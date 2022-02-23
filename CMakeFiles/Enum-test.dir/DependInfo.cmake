@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Applications/uni/rnvs/C-Flags/test/enum_test.c" "CMakeFiles/enum-test.dir/test/enum_test.c.o" "gcc" "CMakeFiles/enum-test.dir/test/enum_test.c.o.d"
+  "/Applications/uni/rnvs/reflag/test/enum_test.c" "CMakeFiles/enum-test.dir/test/enum_test.c.o" "gcc" "CMakeFiles/enum-test.dir/test/enum_test.c.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/Applications/uni/rnvs/C-Flags/CMakeFiles/reflag.dir/DependInfo.cmake"
+  "/Applications/uni/rnvs/reflag/CMakeFiles/reflag.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

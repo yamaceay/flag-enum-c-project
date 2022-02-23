@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/renum-test.dir/test/renum_test.c.o"
   "CMakeFiles/renum-test.dir/test/renum_test.c.o.d"
-  "Outputs/renum_test"
-  "Outputs/renum_test.pdb"
+  "output/renum_test"
+  "output/renum_test.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -25,5 +25,5 @@
 
 #ifndef INPUT_DATA_C
 #define INPUT_DATA_C
-#include "../inputs/all.c"
+#include "../input/all.c"
 #endif

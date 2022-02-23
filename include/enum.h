@@ -3,8 +3,7 @@
 #include "flag.h"
 #endif
 
-typedef struct _Enum Enum;
-typedef struct _Enum {
+struct _Enum {
     Flag flag;
     uint32_t __len;
     
@@ -20,7 +19,8 @@ typedef struct _Enum {
     void (*reset) (void *_self, uint32_t anEnum);
     
     void (*print) (void *_self);
-} Enum;
+};
+typedef struct _Enum Enum;
 
 Enum* new_e (char *names, uint32_t len);
 void del_e (void *_self);

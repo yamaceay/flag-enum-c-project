@@ -1,4 +1,0 @@
-/usr/local/lib/libreflag.1.4.0.dylib
-/usr/local/lib/libreflag.dylib
-/usr/local/include/reflag.h
-/usr/local/share/pkgconfig/reflag.pc

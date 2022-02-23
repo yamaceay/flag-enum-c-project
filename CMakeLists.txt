@@ -28,20 +28,20 @@ install(FILES ${CMAKE_BINARY_DIR}/reflag.pc DESTINATION ${CMAKE_INSTALL_DATAROOT
 
 add_executable(input src/input.c include/input.h)
 target_link_libraries(input PUBLIC reflag)
-set_target_properties(input PROPERTIES OUTPUT_NAME "Outputs/Input")
+set_target_properties(input PROPERTIES OUTPUT_NAME output/input)
 
 function(make_test test_file)
     add_executable(${test_file}-test test/${test_file}_test.c)
     target_link_libraries(${test_file}-test PUBLIC reflag)
     set_target_properties(${test_file}-test PROPERTIES 
-        OUTPUT_NAME Outputs/${test_file}_test)
+        OUTPUT_NAME output/${test_file}_test)
 endfunction()
 
-function(build_test test_file input_path is_flag) 
+function(build_test test_file is_flag wdir) 
     add_custom_target(
         ${test_file}-test-run
         COMMAND make input
-        COMMAND ${input_path}/input ${is_flag}
+        COMMAND output/input ${is_flag} ${wdir}
         COMMAND make ${test_file}-test
         COMMENT Run ${test_file} Test
     )
@@ -57,5 +57,5 @@ foreach(val RANGE ${len})
     list(GET test_files ${val} test_file)
     list(GET are_flags ${val} is_flag)
     make_test(${test_file})
-    build_test(${test_file} ./outputs ${is_flag})
+    build_test(${test_file} ${is_flag} .)
 endforeach()

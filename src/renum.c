@@ -54,7 +54,7 @@ uint32_t get_r (void *_self) {
 
 bool all_r (void *_self, uint32_t *renums, uint32_t renums_len) {
     Flag *self = (Flag *) _self;
-    for (int i = 0; i < renums_len; i++) {
+    for (uint32_t i = 0; i < renums_len; i++) {
         if (~self->is(self, 1 << renums[i])) return false;
     }
     return true;    
@@ -62,7 +62,7 @@ bool all_r (void *_self, uint32_t *renums, uint32_t renums_len) {
 
 bool any_r (void *_self, uint32_t *renums, uint32_t renums_len) {
     Flag *self = (Flag *) _self;
-    for (int i = 0; i < renums_len; i++) {
+    for (uint32_t i = 0; i < renums_len; i++) {
         if (self->is(self, 1 << renums[i])) return true;
     }
     return false;    
@@ -70,14 +70,14 @@ bool any_r (void *_self, uint32_t *renums, uint32_t renums_len) {
 
 void set_r (void *_self, uint32_t *renums, uint32_t renums_len) {
     Flag *self = (Flag *) _self;
-    for (int i = 0; i < renums_len; i++) {
+    for (uint32_t i = 0; i < renums_len; i++) {
         self->set(self, 1 << renums[i]);
     }
 }
 
 void reset_r (void *_self, uint32_t *renums, uint32_t renums_len) {
     Flag *self = (Flag *) _self;
-    for (int i = 0; i < renums_len; i++) {
+    for (uint32_t i = 0; i < renums_len; i++) {
         self->reset(self, 1 << renums[i]);
     }
 }

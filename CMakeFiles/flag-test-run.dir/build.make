@@ -53,10 +53,10 @@ RM = /usr/local/Cellar/cmake/3.22.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Applications/uni/rnvs/C-Flags
+CMAKE_SOURCE_DIR = /Applications/uni/rnvs/reflag
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Applications/uni/rnvs/C-Flags
+CMAKE_BINARY_DIR = /Applications/uni/rnvs/reflag
 
 # Utility rule file for flag-test-run.
 
@@ -67,9 +67,9 @@ include CMakeFiles/flag-test-run.dir/compiler_depend.make
 include CMakeFiles/flag-test-run.dir/progress.make
 
 CMakeFiles/flag-test-run:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Applications/uni/rnvs/C-Flags/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) Test
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Applications/uni/rnvs/reflag/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) Test
 	make input
-	./outputs/input t
+	output/input t .
 	make flag-test
 
 flag-test-run: CMakeFiles/flag-test-run
@@ -85,6 +85,6 @@ CMakeFiles/flag-test-run.dir/clean:
 .PHONY : CMakeFiles/flag-test-run.dir/clean
 
 CMakeFiles/flag-test-run.dir/depend:
-	cd /Applications/uni/rnvs/C-Flags && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Applications/uni/rnvs/C-Flags /Applications/uni/rnvs/C-Flags /Applications/uni/rnvs/C-Flags /Applications/uni/rnvs/C-Flags /Applications/uni/rnvs/C-Flags/CMakeFiles/flag-test-run.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Applications/uni/rnvs/reflag && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Applications/uni/rnvs/reflag /Applications/uni/rnvs/reflag /Applications/uni/rnvs/reflag /Applications/uni/rnvs/reflag /Applications/uni/rnvs/reflag/CMakeFiles/flag-test-run.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/flag-test-run.dir/depend
 

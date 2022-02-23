@@ -3,8 +3,7 @@
 #include "bool.h"
 #endif
 
-typedef struct _Flag Flag;
-typedef struct _Flag {
+struct _Flag {
     uint32_t __flags;
     char __names[BUF];
 
@@ -20,7 +19,8 @@ typedef struct _Flag {
 
     void (*print) (void *_self);
 
-} Flag;
+};
+typedef struct _Flag Flag;
 
 Flag* new_f (char *names);
 void del_f (void *_self);
