@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "bool.h": "c",
-        "enum.h": "c",
-        "flag.h": "c"
-    },
-    "C_Cpp.errorSquiggles": "Disabled"
-}
