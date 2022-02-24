@@ -2,6 +2,7 @@ CMakeFiles
 .vscode
 .DS_Store
 cmake_install.cmake
+install_manifest.txt
 CMakeCache.txt
 Makefile
 *.dylib
