@@ -385,77 +385,77 @@ src/renum.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/renum.c.s
 .PHONY : src/renum.c.s
 
-test/enum_test.o: test/enum_test.c.o
-.PHONY : test/enum_test.o
+test/enum-test.o: test/enum-test.c.o
+.PHONY : test/enum-test.o
 
 # target to build an object file
-test/enum_test.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/test/enum_test.c.o
-.PHONY : test/enum_test.c.o
+test/enum-test.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/test/enum-test.c.o
+.PHONY : test/enum-test.c.o
 
-test/enum_test.i: test/enum_test.c.i
-.PHONY : test/enum_test.i
+test/enum-test.i: test/enum-test.c.i
+.PHONY : test/enum-test.i
 
 # target to preprocess a source file
-test/enum_test.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/test/enum_test.c.i
-.PHONY : test/enum_test.c.i
+test/enum-test.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/test/enum-test.c.i
+.PHONY : test/enum-test.c.i
 
-test/enum_test.s: test/enum_test.c.s
-.PHONY : test/enum_test.s
+test/enum-test.s: test/enum-test.c.s
+.PHONY : test/enum-test.s
 
 # target to generate assembly for a file
-test/enum_test.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/test/enum_test.c.s
-.PHONY : test/enum_test.c.s
+test/enum-test.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/test/enum-test.c.s
+.PHONY : test/enum-test.c.s
 
-test/flag_test.o: test/flag_test.c.o
-.PHONY : test/flag_test.o
+test/flag-test.o: test/flag-test.c.o
+.PHONY : test/flag-test.o
 
 # target to build an object file
-test/flag_test.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/flag-test.dir/build.make CMakeFiles/flag-test.dir/test/flag_test.c.o
-.PHONY : test/flag_test.c.o
+test/flag-test.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/flag-test.dir/build.make CMakeFiles/flag-test.dir/test/flag-test.c.o
+.PHONY : test/flag-test.c.o
 
-test/flag_test.i: test/flag_test.c.i
-.PHONY : test/flag_test.i
+test/flag-test.i: test/flag-test.c.i
+.PHONY : test/flag-test.i
 
 # target to preprocess a source file
-test/flag_test.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/flag-test.dir/build.make CMakeFiles/flag-test.dir/test/flag_test.c.i
-.PHONY : test/flag_test.c.i
+test/flag-test.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/flag-test.dir/build.make CMakeFiles/flag-test.dir/test/flag-test.c.i
+.PHONY : test/flag-test.c.i
 
-test/flag_test.s: test/flag_test.c.s
-.PHONY : test/flag_test.s
+test/flag-test.s: test/flag-test.c.s
+.PHONY : test/flag-test.s
 
 # target to generate assembly for a file
-test/flag_test.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/flag-test.dir/build.make CMakeFiles/flag-test.dir/test/flag_test.c.s
-.PHONY : test/flag_test.c.s
+test/flag-test.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/flag-test.dir/build.make CMakeFiles/flag-test.dir/test/flag-test.c.s
+.PHONY : test/flag-test.c.s
 
-test/renum_test.o: test/renum_test.c.o
-.PHONY : test/renum_test.o
+test/renum-test.o: test/renum-test.c.o
+.PHONY : test/renum-test.o
 
 # target to build an object file
-test/renum_test.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/renum-test.dir/build.make CMakeFiles/renum-test.dir/test/renum_test.c.o
-.PHONY : test/renum_test.c.o
+test/renum-test.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/renum-test.dir/build.make CMakeFiles/renum-test.dir/test/renum-test.c.o
+.PHONY : test/renum-test.c.o
 
-test/renum_test.i: test/renum_test.c.i
-.PHONY : test/renum_test.i
+test/renum-test.i: test/renum-test.c.i
+.PHONY : test/renum-test.i
 
 # target to preprocess a source file
-test/renum_test.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/renum-test.dir/build.make CMakeFiles/renum-test.dir/test/renum_test.c.i
-.PHONY : test/renum_test.c.i
+test/renum-test.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/renum-test.dir/build.make CMakeFiles/renum-test.dir/test/renum-test.c.i
+.PHONY : test/renum-test.c.i
 
-test/renum_test.s: test/renum_test.c.s
-.PHONY : test/renum_test.s
+test/renum-test.s: test/renum-test.c.s
+.PHONY : test/renum-test.s
 
 # target to generate assembly for a file
-test/renum_test.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/renum-test.dir/build.make CMakeFiles/renum-test.dir/test/renum_test.c.s
-.PHONY : test/renum_test.c.s
+test/renum-test.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/renum-test.dir/build.make CMakeFiles/renum-test.dir/test/renum-test.c.s
+.PHONY : test/renum-test.c.s
 
 # Help Target
 help:
@@ -492,15 +492,15 @@ help:
 	@echo "... src/renum.o"
 	@echo "... src/renum.i"
 	@echo "... src/renum.s"
-	@echo "... test/enum_test.o"
-	@echo "... test/enum_test.i"
-	@echo "... test/enum_test.s"
-	@echo "... test/flag_test.o"
-	@echo "... test/flag_test.i"
-	@echo "... test/flag_test.s"
-	@echo "... test/renum_test.o"
-	@echo "... test/renum_test.i"
-	@echo "... test/renum_test.s"
+	@echo "... test/enum-test.o"
+	@echo "... test/enum-test.i"
+	@echo "... test/enum-test.s"
+	@echo "... test/flag-test.o"
+	@echo "... test/flag-test.i"
+	@echo "... test/flag-test.s"
+	@echo "... test/renum-test.o"
+	@echo "... test/renum-test.i"
+	@echo "... test/renum-test.s"
 .PHONY : help
 
 

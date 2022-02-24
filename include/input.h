@@ -8,8 +8,15 @@
 #include <dirent.h>
 #endif
 
-char *concat (char *str1, char *str2);
-char *read_enum (char *file, int *res_len, char **name, bool flag);
-void write_enum (char *file, char *mode, char *name, char *res);
-void take_inputs (); 
+char *builder (char *str1, char *str2);
 
+// I/O-Functions for enum (private scope)
+int _enum_handle_input (int argc, char **argv, char **dest_wdir, bool *flag);
+int _enum_write_to_all (struct dirent *entry, char *dest_dir, bool flag);
+char *_enum_set_name(char *temp_file);
+char *_enum_set_data(char *file, bool flag);
+char *_enum_set_data_step(char *res, char *buf, uint32_t i, bool flag);
+char *_enum_set_code(char *name, char *data);
+void _enum_write_code (char *file, char *mode, char *code);
+void _enum_write_path (char *path, char *dest_path, bool flag);
+void _enum_write_file(char *path, char *dest_path, bool flag);

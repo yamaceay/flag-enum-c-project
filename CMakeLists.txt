@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5.1)
 set(CMAKE_C_STANDARD 99)
 
-project(reflag VERSION 1.4.0 DESCRIPTION "modern flags & enums")
+project(reflag VERSION 1.7.0 DESCRIPTION "modern flags & enums")
 
 add_library (
     reflag SHARED src/bool.c src/flag.c src/enum.c 
@@ -18,11 +18,6 @@ set_target_properties(
 
 include(GNUInstallDirs)
 
-install(TARGETS reflag
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
-
 configure_file(reflag.pc.in reflag.pc @ONLY)
 install(FILES ${CMAKE_BINARY_DIR}/reflag.pc DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig)
 
@@ -31,10 +26,10 @@ target_link_libraries(input PUBLIC reflag)
 set_target_properties(input PROPERTIES OUTPUT_NAME output/input)
 
 function(make_test test_file)
-    add_executable(${test_file}-test test/${test_file}_test.c)
+    add_executable(${test_file}-test test/${test_file}-test.c)
     target_link_libraries(${test_file}-test PUBLIC reflag)
     set_target_properties(${test_file}-test PROPERTIES 
-        OUTPUT_NAME output/${test_file}_test)
+        OUTPUT_NAME output/${test_file}-test)
 endfunction()
 
 function(build_test test_file is_flag wdir) 

@@ -25,13 +25,9 @@ typedef struct _Enum Enum;
 Enum* new_e (char *names, uint32_t len);
 void del_e (void *_self);
 
-char* getNames_e (void *_self);
-void setNames_e (void *_self, char *newNames);
-
 void init_e (void *_self, char* names, uint32_t len);
 uint32_t len_e (void *_self);
-uint32_t get_e (void *_self);
+
 bool is_e (void *_self, uint32_t aFlag);
 void set_e (void *_self, uint32_t anEnum); 
 void reset_e (void *_self, uint32_t anEnum);
-void print_e(void *_self);

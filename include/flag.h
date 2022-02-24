@@ -3,6 +3,9 @@
 #include "bool.h"
 #endif
 
+/**
+ * @struct
+ */
 struct _Flag {
     uint32_t __flags;
     char __names[BUF];

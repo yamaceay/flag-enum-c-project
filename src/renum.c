@@ -3,16 +3,36 @@
 #include "renum.h"
 #endif
 
+/**
+ * @brief Creates a new Renum instance 
+ * 
+ * @param names Names (optional)
+ * @param len Length of Renum
+ * @return Renum* Renum instance
+ */
 Renum *new_r (char *names, uint32_t len) {
     Renum *aRenum = malloc(sizeof(Renum));
     init_r (aRenum, names, len);
     return aRenum;
 }
 
+/**
+ * @brief Delete Renum instance
+ * 
+ * @param _self Renum instance
+ */
 void del_r (Renum* self) {
     free(self);
 }
 
+/**
+ * @brief Initializes Renum instance given
+ * names and length of Renum
+ * 
+ * @param _self Renum instance
+ * @param names Names 
+ * @param len Length
+ */
 void init_r (void *_self, char *names, uint32_t len) {
     Renum *self = (Renum *) _self;
     Flag flag;
@@ -20,38 +40,38 @@ void init_r (void *_self, char *names, uint32_t len) {
     *self = (Renum) {
         .flag = flag,
         .__len = len,
-        .getNames = getNames_r,
-        .setNames = setNames_r,
+        .getNames = getNames_f,
+        .setNames = setNames_f,
+        .print = print_f,
+        .get = get_f,
         .init = init_r,
-        .get = get_r,
         .all = all_r,
         .any = any_r,
         .set = set_r,
-        .reset = reset_r,
-        .print = print_r
+        .reset = reset_r
     };
 }
 
-char *getNames_r (void *_self) {
-    Flag *self = (Flag *) _self;
-    return self->getNames(self);
-}
-
-void setNames_r (void *_self, char *newNames) {
-    Flag *self = (Flag *) _self;
-    self->setNames(self, newNames);
-}
-
+/**
+ * @brief Getter for __len attribute
+ * of Renum instance
+ * 
+ * @param _self Renum instance
+ * @return uint32_t Length
+ */
 uint32_t len_r (void *_self) {
     Renum *self = (Renum *) _self;
     return self->__len;
 }
 
-uint32_t get_r (void *_self) {
-    Flag *self = (Flag *) _self;
-    return self->get(self);
-}
-
+/**
+ * @brief Checks if a renum variable matches
+ * one of the flags
+ * 
+ * @param _self Renum instance
+ * @param aRenum Renum variable
+ * @return bool true if yes else false
+ */
 bool all_r (void *_self, uint32_t *renums, uint32_t renums_len) {
     Flag *self = (Flag *) _self;
     for (uint32_t i = 0; i < renums_len; i++) {
@@ -60,6 +80,14 @@ bool all_r (void *_self, uint32_t *renums, uint32_t renums_len) {
     return true;    
 }
 
+/**
+ * @brief Checks if a renum variable matches
+ * one of the flags
+ * 
+ * @param _self Renum instance
+ * @param aRenum Renum variable
+ * @return bool true if yes else false
+ */
 bool any_r (void *_self, uint32_t *renums, uint32_t renums_len) {
     Flag *self = (Flag *) _self;
     for (uint32_t i = 0; i < renums_len; i++) {
@@ -68,6 +96,13 @@ bool any_r (void *_self, uint32_t *renums, uint32_t renums_len) {
     return false;    
 }
 
+/**
+ * @brief Adds the renum variable to 
+ * the Renum instance
+ * 
+ * @param _self Renum instance
+ * @param aRenum Renum variable
+ */
 void set_r (void *_self, uint32_t *renums, uint32_t renums_len) {
     Flag *self = (Flag *) _self;
     for (uint32_t i = 0; i < renums_len; i++) {
@@ -75,16 +110,16 @@ void set_r (void *_self, uint32_t *renums, uint32_t renums_len) {
     }
 }
 
+/**
+ * @brief Removes the renum variable from 
+ * the Renum instance
+ * 
+ * @param _self Renum instance
+ * @param aRenum Renum variable
+ */
 void reset_r (void *_self, uint32_t *renums, uint32_t renums_len) {
     Flag *self = (Flag *) _self;
     for (uint32_t i = 0; i < renums_len; i++) {
         self->reset(self, 1 << renums[i]);
     }
-}
-    
-void print_r(void *_self) {
-    Renum* self = (Renum *)_self;
-    uint32_t res = self->get(self);
-    char *names = self->getNames(self);
-    print(res, names ,self->__len);
 }

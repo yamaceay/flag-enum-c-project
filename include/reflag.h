@@ -23,7 +23,7 @@
 #include "renum.h"
 #endif
 
-#ifndef INPUT_DATA_C
-#define INPUT_DATA_C
-#include "../input/all.c"
+#ifndef INPUT_DATA_H
+#define INPUT_DATA_H
+#include "../input/all.h"
 #endif

@@ -114,15 +114,15 @@ git clone https://github.com/yamaceay/reflag.git
 - *src* (Source files)
 - *include* (Header files)
 - [X] *test* (Test files)
-    - *my\_test.c*
-    - *your\_test.c*
+    - *my\-test.c*
+    - *your\-test.c*
 - [X] *output* (Output)
-    - *my\_test*
-    - *your\_test*
+    - *my\-test*
+    - *your\-test*
 - [X] *input* (Input)
-    - *all.c* (Don't modify) 
-    - *my\_enum.txt*
-    - *your\_enum.txt*
+    - *all.h* (Don't modify) 
+    - *my\-enum.txt*
+    - *your\-enum.txt*
 - [X] *CMakeLists.txt* (Build & Run Configurations)
 - Other files
 
@@ -174,34 +174,30 @@ git clone https://github.com/yamaceay/reflag.git
 |---------|------|-----------|-------------|
 | init | void | char *names | Initializes a flag object |
 | get | uint32_t | void \*\_self | Returns the \_\_flags |
-| is | bool | void \*\_self, uint32_t aFlag | Checks if the new flag has been already set (using bitwise AND)|
-| set | void | void \*\_self, uint32_t aFlag | Adds the new flag to the flag (using bitwise OR) |
-| reset | void | void \*\_self, uint32_t aFlag | Removes the new flag from the flag (using bitwise OR and bitwise NOT)|
 | getNames | char \* | void \*\_self | Gets the names attribute |
 | setNames | void | void \*\_self | Sets the names attribute
 | print | void | void \*\_self | Prints the actual state of flag (optionally renamed)
+| is | bool | void \*\_self, uint32_t aFlag | Checks if the new flag has been already set (using bitwise AND)|
+| set | void | void \*\_self, uint32_t aFlag | Adds the new flag to the flag (using bitwise OR) |
+| reset | void | void \*\_self, uint32_t aFlag | Removes the new flag from the flag (using bitwise OR and bitwise NOT)|
 
-### Enum (Enum.h)
+### Enum extends Flag (Enum.h)
 
 #### Enum - Attributes
 
 | Attributes | Type | Description |
 |------------|------|-------------|
-| flag | Flag | Extends flag |
+| flag | Flag | Extends flag. _Methods getNames(...), setNames(...), print(...) and get(...) can be directly accessed by Enum instance (self->print(...) equivalent to self->flag.print(...)_) |
 | __len | uint32_t | Defines the number of items in enum |
 
 #### Enum - Methods
 
-| Methods | Type | Arguments | Description |
+| Methods _(@Override)_ | Type | Arguments | Description |
 |---------|------|-----------|-------------|
 | init | void | char *names, uint32_t len | Initializes an enum object |
-| get | uint32_t | void \*\_self | Returns the flag.\_\_flags |
 | is | bool | void \*\_self, uint32_t anEnum | Checks if the new enum has been already added (1 << anEnum is given as parameter to Flag.is(...))|
 | set | void | void \*\_self, uint32_t anEnum | Adds the new enum to the enum (1 << anEnum is given as parameter to Flag.set(...)) |
 | reset | void | void \*\_self, uint32_t anEnum | Removes the new enum from the enum (1 << anEnum is given as parameter to Flag.reset(...))|
-| getNames | char \* | void \*\_self | Gets the names attribute |
-| setNames | void | void \*\_self | Sets the names attribute
-| print | void | void \*\_self | Prints the actual state of enum (optionally renamed)
 
 ### Renum (Renum.h)
 
@@ -209,22 +205,18 @@ git clone https://github.com/yamaceay/reflag.git
 
 | Attributes | Type | Description |
 |------------|------|-------------|
-| flag | Flag | Extends flag |
+| flag | Flag | Extends flag. _Methods getNames(...), setNames(...), print(...) and get(...) can be directly accessed by Renum instance (self->print(...) equivalent to self->flag.print(...))_ |
 | __len | uint32_t | Defines the number of items in renum |
 
 #### Renum - Methods
 
-| Methods | Type | Arguments | Description |
+| Methods _(@Override)_ | Type | Arguments | Description |
 |---------|------|-----------|-------------|
 | init | void | char *names, uint32_t len | Initializes a renum object |
-| get | uint32_t | void \*\_self | Returns the flag.\_\_flags |
 | any | bool | void \*\_self, uint32_t* renums, uint32_t renums_len | Checks if there is any renum that has been already added (for each renum in renums: 1 << renum is given as parameter to Flag.is(...))|
 | all | bool | void \*\_self, uint32_t* renums, uint32_t renums_len | Checks if all renums have been already added (for each renum in renums: 1 << renum is given as parameter to Flag.is(...))|
 | set | void | void \*\_self, uint32_t* renums, uint32_t renums_len | Sets each renum (for each renum in renums: 1 << renum is given as parameter to Flag.set(...)) |
 | reset | void | void \*\_self, uint32_t* renums, uint32_t renums_len | Removes the new renum (for each renum in renums: 1 << renum is given as parameter to Flag.reset(...))|
-| getNames | char \* | void \*\_self | Gets the names attribute |
-| setNames | void | void \*\_self | Sets the names attribute
-| print | void | void \*\_self | Prints the actual state of renum (optionally renamed)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -234,7 +226,7 @@ git clone https://github.com/yamaceay/reflag.git
 
 For development and testing purposes, you need to follow the steps below:
 
-1. *input*: Create the enum by writing a text file in input directory *your\_enum* and list as follows: 
+1. *input*: Create the enum by writing a text file in input directory *your\-enum*.txt and list as follows: 
 ```txt
     your_item_1
     your_item_2
@@ -260,7 +252,7 @@ typedef enum your_enum {
 } your_enum;
 ```
 
-2. *test*: Testing file should be included in test directory and has a name *your*\_test.c
+2. *test*: Testing file should be included in test directory and has a name *your*\-test.c
 
 3. *CMakelists.txt*: 
     ```c
@@ -279,7 +271,7 @@ typedef enum your_enum {
     ```
     As the result, you can now run the test output file using:
     ```sh
-    ./output/*your*_test
+    ./output/*your*-test
     ```
 
 

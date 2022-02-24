@@ -26,17 +26,12 @@ typedef struct _Renum Renum;
 Renum* new_r (char *names, uint32_t len);
 void del_r(Renum *self);
 
-char* getNames_r (void *_self);
-void setNames_r (void *_self, char *newNames);
-
 void init_r (void *_self, char* names, uint32_t len);
 uint32_t len_r (void *_self);
-uint32_t get_r (void *_self);
 
 bool all_r (void *_self, uint32_t *renums, uint32_t renums_len);
 bool any_r (void *_self, uint32_t *renums, uint32_t renums_len);
 void set_r (void *_self, uint32_t *renums, uint32_t renums_len);
 void reset_r (void *_self, uint32_t *renums, uint32_t renums_len);
 
-void print_r(void *_self);
 
