@@ -86,7 +86,7 @@ Here are the dependencies:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
+You can follow the next instructions for setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
@@ -218,10 +218,10 @@ git clone https://github.com/yamaceay/reflag.git
 |---------|------|-----------|-------------|
 | init | void | char *names, uint32_t len | Initializes a renum object |
 | get | uint32_t | void \*\_self | Returns the flag.\_\_flags |
-| any | bool | void \*\_self, uint32_t aRenum | Checks if there is any renum that has been already added (for each renum in aRenum: 1 << renum is given as parameter to Flag.is(...))|
-| all | bool | void \*\_self, uint32_t aRenum | Checks if all renums have been already added (for each renum in aRenum: 1 << renum is given as parameter to Flag.is(...))|
-| set | void | void \*\_self, uint32_t aRenum | Sets each renum (for each renum in aRenum: 1 << renum is given as parameter to Flag.set(...)) |
-| reset | void | void \*\_self, uint32_t aRenum | Removes the new renum (for each renum in aRenum: 1 << renum is given as parameter to Flag.reset(...))|
+| any | bool | void \*\_self, uint32_t* renums, uint32_t renums_len | Checks if there is any renum that has been already added (for each renum in renums: 1 << renum is given as parameter to Flag.is(...))|
+| all | bool | void \*\_self, uint32_t* renums, uint32_t renums_len | Checks if all renums have been already added (for each renum in renums: 1 << renum is given as parameter to Flag.is(...))|
+| set | void | void \*\_self, uint32_t* renums, uint32_t renums_len | Sets each renum (for each renum in renums: 1 << renum is given as parameter to Flag.set(...)) |
+| reset | void | void \*\_self, uint32_t* renums, uint32_t renums_len | Removes the new renum (for each renum in renums: 1 << renum is given as parameter to Flag.reset(...))|
 | getNames | char \* | void \*\_self | Gets the names attribute |
 | setNames | void | void \*\_self | Sets the names attribute
 | print | void | void \*\_self | Prints the actual state of renum (optionally renamed)
