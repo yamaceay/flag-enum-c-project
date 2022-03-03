@@ -38,14 +38,10 @@ char *builder (char *str1, char *str2) {
  * @param flag The feature is_flag
  * @return int Return for error handling
  */
-int _enum_handle_input (int argc, char **argv, char **dest_wdir, bool *flag) {
-    if (argc > 3) return 1;
-    if (argc == 3) {
-        *flag = strcmp(argv[1], "t") == 0;
-        *dest_wdir = builder(*dest_wdir, argv[2]);
-    }
-    if (argc < 3) *dest_wdir = builder(*dest_wdir, ".");
-    if (argc < 2) *flag = false;
+int _enum_handle_input (int argc, char **argv, char **dest_wdir) {
+    if (argc > 2) return 1;
+    char *dest_arg = argc == 2 ? argv[1] : ".";
+    *dest_wdir = builder(*dest_wdir, dest_arg);
     return 0;
 }
 
@@ -54,10 +50,9 @@ int _enum_handle_input (int argc, char **argv, char **dest_wdir, bool *flag) {
  * 
  * @param entry Child node of directory
  * @param dest_dir Destination directory
- * @param flag The feature is_flag
  * @return int Return for error handling
  */
-int _enum_write_to_all (struct dirent *entry, char *dest_dir, bool flag) {
+int _enum_write_to_all (struct dirent *entry, char *dest_dir) {
     char *d_name = strdup(entry->d_name);
     char *d_name_ext = strdup(d_name);
 
@@ -77,7 +72,7 @@ int _enum_write_to_all (struct dirent *entry, char *dest_dir, bool flag) {
 
         char *dest_path = strdup(dest_dir);
         dest_path = builder(dest_path, "/all.h");
-        _enum_write_file(path, dest_path, flag);
+        _enum_write_file(path, dest_path);
         free(dest_path);
 
         free(path);
@@ -117,10 +112,9 @@ char *_enum_set_name(char *file) {
  * @brief Saves file content as a string
  * 
  * @param file File
- * @param flag The feature is_flag
  * @return char* String
  */
-char *_enum_set_data(char *file, bool flag) {
+char *_enum_set_data(char *file) {
     char *res = "";
     
     int i = 0;
@@ -128,7 +122,7 @@ char *_enum_set_data(char *file, bool flag) {
     char *buf = malloc(BUF);
     FILE* fp = fopen(file, "r");
     while (fgets(buf, BUF, fp)) {
-        res = _enum_set_data_step(res, buf, i, flag);
+        res = _enum_set_data_step(res, buf, i);
         i++;
     }
     fclose(fp);
@@ -144,10 +138,9 @@ char *_enum_set_data(char *file, bool flag) {
  * @param res Result
  * @param buf Buffer
  * @param i Iteration step
- * @param flag The feature is_flag
  * @return char* Enum variable
  */
-char *_enum_set_data_step (char *res, char *buf, uint32_t i, bool flag) {
+char *_enum_set_data_step (char *res, char *buf, uint32_t i) {
     if (i != 0) {
         res = builder(res, ",\n  ");
     }
@@ -155,12 +148,11 @@ char *_enum_set_data_step (char *res, char *buf, uint32_t i, bool flag) {
         buf[strlen(buf)-1] = '\0';
     } 
     res = builder(res, buf);
-    if (flag) {
-        res = builder(res, " = ");
-        char num[10];
-        sprintf(num, "%d", 1 << i);
-        res = builder(res, num);
-    }
+    res = builder(res, " = ");
+    char num[10];
+    sprintf(num, "%d", 1 << i);
+    res = builder(res, num);
+
     return res;
 }
 
@@ -204,15 +196,14 @@ void _enum_write_code(char *file, char *mode, char *code) {
  * 
  * @param path Source path
  * @param dest_path Destination path
- * @param flag The feature is_flag
  */
-void _enum_write_file(char *path, char *dest_path, bool flag) {
+void _enum_write_file(char *path, char *dest_path) {
     char *temp_file = strdup(path);
     char *name = _enum_set_name(temp_file);
     free(temp_file);
 
     char *temp_name = strdup(name);
-    char *data = _enum_set_data(path, flag);
+    char *data = _enum_set_data(path);
     char *code = _enum_set_code(temp_name, data);
     free(temp_name);
             
@@ -234,8 +225,7 @@ void _enum_write_file(char *path, char *dest_path, bool flag) {
  */
 int main(int argc, char **argv) {
     char *dest_wdir;
-    bool flag;
-    if (_enum_handle_input(argc, argv, &dest_wdir, &flag) == 1) 
+    if (_enum_handle_input(argc, argv, &dest_wdir) == 1) 
         return 1;
 
     struct dirent *entry;
@@ -256,7 +246,7 @@ int main(int argc, char **argv) {
     dp = opendir(dest_dir);
 
     while((entry = readdir(dp))) {
-        if (_enum_write_to_all(entry, dest_dir, flag) == 1)
+        if (_enum_write_to_all(entry, dest_dir) == 1)
             continue;
     }
     closedir(dp);

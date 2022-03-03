@@ -15,15 +15,13 @@ int main() {
     print_font("This text is normal", renu);
 
     printf("\nLet's convert the font to script \n and making the text italic\n");
-    font fonts_1[] = {script, italic};
-    renu->set(renu, fonts_1, 2);
+    renu->set_all(renu, 2, script, italic);
     renu->print(renu);
     print_font("This text is script and italic", renu);
 
     printf("\nNo, let's stretch all of that and just make the size bigger");
-    renu->reset(renu, fonts_1, 2);
-    font fonts_2[] = {big};
-    renu->set(renu, fonts_2, 1);
+    renu->reset_all(renu, 2, script, italic);
+    renu->set(renu, big);
     renu->print(renu);
     print_font("This text is just bigger", renu);
 

@@ -40,15 +40,18 @@ void init_r (void *_self, char *names, uint32_t len) {
     *self = (Renum) {
         .flag = flag,
         .__len = len,
-        .getNames = getNames_f,
-        .setNames = setNames_f,
+        .names = names_f,
+        .set_names = set_names_f,
         .print = print_f,
         .get = get_f,
         .init = init_r,
+        .is = is_r,
         .all = all_r,
         .any = any_r,
         .set = set_r,
-        .reset = reset_r
+        .set_all = set_all_r,
+        .reset = reset_r,
+        .reset_all = reset_all_r
     };
 }
 
@@ -72,11 +75,28 @@ uint32_t len_r (void *_self) {
  * @param aRenum Renum variable
  * @return bool true if yes else false
  */
-bool all_r (void *_self, uint32_t *renums, uint32_t renums_len) {
+bool is_r (void* _self, uint32_t aRenum) {
+    Renum *self = (Renum *) _self;
+    return self->all(self, 1, aRenum);
+}
+
+/**
+ * @brief Checks if a renum variable matches
+ * one of the flags
+ * 
+ * @param _self Renum instance
+ * @param aRenum Renum variable
+ * @return bool true if yes else false
+ */
+bool all_r (void *_self, uint32_t size, ...) {
     Flag *self = (Flag *) _self;
-    for (uint32_t i = 0; i < renums_len; i++) {
-        if (~self->is(self, 1 << renums[i])) return false;
+    va_list args;
+    va_start(args, size);
+    for (uint32_t i = 0; i < size; i++) {
+        uint32_t arg = va_arg(args, uint32_t);
+        if (~self->is(self, arg)) return false;
     }
+    va_end(args);
     return true;    
 }
 
@@ -88,11 +108,15 @@ bool all_r (void *_self, uint32_t *renums, uint32_t renums_len) {
  * @param aRenum Renum variable
  * @return bool true if yes else false
  */
-bool any_r (void *_self, uint32_t *renums, uint32_t renums_len) {
+bool any_r (void *_self, uint32_t size, ...) {
     Flag *self = (Flag *) _self;
-    for (uint32_t i = 0; i < renums_len; i++) {
-        if (self->is(self, 1 << renums[i])) return true;
+    va_list args;
+    va_start(args, size);
+    for (uint32_t i = 0; i < size; i++) {
+        uint32_t arg = va_arg(args, uint32_t);
+        if (self->is(self, arg)) return true;
     }
+    va_end(args);
     return false;    
 }
 
@@ -103,11 +127,40 @@ bool any_r (void *_self, uint32_t *renums, uint32_t renums_len) {
  * @param _self Renum instance
  * @param aRenum Renum variable
  */
-void set_r (void *_self, uint32_t *renums, uint32_t renums_len) {
+void set_r (void* _self, uint32_t aRenum) {
+    Renum *self = (Renum *) _self;
+    self->set_all(self, 1, aRenum);
+}
+
+/**
+ * @brief Adds the renum variable to 
+ * the Renum instance
+ * 
+ * @param _self Renum instance
+ * @param aRenum Renum variable
+ */
+void set_all_r (void *_self, uint32_t size, ...) {
     Flag *self = (Flag *) _self;
-    for (uint32_t i = 0; i < renums_len; i++) {
-        self->set(self, 1 << renums[i]);
+    va_list args;
+    va_start(args, size);
+    for (uint32_t i = 0; i < size; i++) {
+        uint32_t arg = va_arg(args, uint32_t);
+        self->set(self, arg);
     }
+    va_end(args);
+}
+
+
+/**
+ * @brief Removes the renum variable from 
+ * the Renum instance
+ * 
+ * @param _self Renum instance
+ * @param aRenum Renum variable
+ */
+void reset_r (void* _self, uint32_t aRenum) {
+    Renum *self = (Renum *) _self;
+    self->reset_all(self, 1, aRenum);
 }
 
 /**
@@ -117,9 +170,13 @@ void set_r (void *_self, uint32_t *renums, uint32_t renums_len) {
  * @param _self Renum instance
  * @param aRenum Renum variable
  */
-void reset_r (void *_self, uint32_t *renums, uint32_t renums_len) {
+void reset_all_r (void *_self, uint32_t size, ...) {
     Flag *self = (Flag *) _self;
-    for (uint32_t i = 0; i < renums_len; i++) {
-        self->reset(self, 1 << renums[i]);
+    va_list args;
+    va_start(args, size);
+    for (uint32_t i = 0; i < size; i++) {
+        uint32_t arg = va_arg(args, uint32_t);
+        self->reset(self, arg);
     }
+    va_end(args);
 }

@@ -10,8 +10,8 @@ struct _Flag {
     uint32_t __flags;
     char __names[BUF];
 
-    char * (*getNames) (void *_self);
-    void (*setNames) (void *_self, char *newNames);
+    char * (*names) (void *_self);
+    void (*set_names) (void *_self, char *newNames);
 
     void (*init) (void *_self, char *names);
     uint32_t (*get) (void *_self);
@@ -28,8 +28,8 @@ typedef struct _Flag Flag;
 Flag* new_f (char *names);
 void del_f (void *_self);
 
-char *getNames_f(void *_self);
-void setNames_f(void *_self, char *newNames);
+char *names_f(void *_self);
+void set_names_f(void *_self, char *newNames);
 
 void init_f (void *_self, char *names);
 uint32_t get_f (void *_self);

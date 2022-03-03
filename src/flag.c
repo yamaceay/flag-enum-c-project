@@ -25,8 +25,8 @@ void init_f(void *_self, char *names) {
     Flag *self = (Flag *) _self;
     *self = (Flag) {
         .__flags = 0,
-        .getNames = getNames_f,
-        .setNames = setNames_f,
+        .names = names_f,
+        .set_names = set_names_f,
         .init = init_f,
         .get = get_f,
         .is = is_f,
@@ -34,7 +34,7 @@ void init_f(void *_self, char *names) {
         .reset = reset_f,
         .print = print_f
     };
-    self->setNames(self, names);
+    self->set_names(self, names);
 }
 
 /**
@@ -44,7 +44,7 @@ void init_f(void *_self, char *names) {
  * @param _self Flag instance
  * @return char* Names
  */
-char *getNames_f (void *_self) {
+char *names_f (void *_self) {
     Flag *self = (Flag *) _self;
     return self->__names;
 }
@@ -56,7 +56,7 @@ char *getNames_f (void *_self) {
  * @param _self Flag instance
  * @param newNames New names
  */
-void setNames_f (void *_self, char *newNames) {
+void set_names_f (void *_self, char *newNames) {
     Flag *self = (Flag *) _self;
     memcpy(self->__names, newNames, strlen(newNames));
     self->__names[strlen(newNames)] = 0;
@@ -119,7 +119,7 @@ void set_f (void* _self, uint32_t aFlag) {
 void reset_f (void* _self, uint32_t aFlag) {   
     Flag *self = (Flag *) _self;
     uint32_t flag = self->get(self);
-    char *names = strdup(self->getNames(self));
+    char *names = strdup(self->names(self));
     flag &= ~aFlag;
     self->init(self, names);
     self->set(self, flag);
@@ -133,7 +133,7 @@ void reset_f (void* _self, uint32_t aFlag) {
 void print_f(void* _self) {
     Flag *self = (Flag *) _self;
     uint32_t res = self->get(self);
-    char *names = self->getNames(self);
+    char *names = self->names(self);
     uint32_t len = 32;
     _print(res, names, len);
 }

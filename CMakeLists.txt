@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.5.1)
 set(CMAKE_C_STANDARD 99)
 
-project(reflag VERSION 1.7.0 DESCRIPTION "modern flags & enums")
+project(reflag VERSION 1.8.0 DESCRIPTION "modern flags & enums")
 
 add_library (
-    reflag SHARED src/bool.c src/flag.c src/enum.c 
+    reflag SHARED src/bool.c src/flag.c
     src/renum.c include/reflag.h include/bool.h 
-    include/flag.h include/enum.h include/renum.h
+    include/flag.h include/renum.h
 )
 include_directories(include)
 include_directories(src)
@@ -32,25 +32,19 @@ function(make_test test_file)
         OUTPUT_NAME output/${test_file}-test)
 endfunction()
 
-function(build_test test_file is_flag wdir) 
+function(build_test test_file wdir) 
     add_custom_target(
         ${test_file}-test-run
         COMMAND make input
-        COMMAND output/input ${is_flag} ${wdir}
+        COMMAND output/input ${wdir}
         COMMAND make ${test_file}-test
         COMMENT Run ${test_file} Test
     )
 endfunction()
 
-set(test_files flag ; enum ; renum)
-set(are_flags t ; f ; f)
+set(test_files flag ; renum)
 
-list(LENGTH test_files num_test_files)
-math(EXPR len "${num_test_files} - 1")
-
-foreach(val RANGE ${len})
-    list(GET test_files ${val} test_file)
-    list(GET are_flags ${val} is_flag)
+foreach(test_file ${test_files})
     make_test(${test_file})
-    build_test(${test_file} ${is_flag} .)
+    build_test(${test_file} .)
 endforeach()

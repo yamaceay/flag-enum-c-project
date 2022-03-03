@@ -20,4 +20,3 @@ typedef enum font {
   italic = 2,
   big = 4
 } font;
-

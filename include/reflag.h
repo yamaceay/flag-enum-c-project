@@ -13,11 +13,6 @@
 #include "flag.h"
 #endif
 
-#ifndef ENUM_H
-#define ENUM_H
-#include "enum.h"
-#endif
-
 #ifndef RENUM_H
 #define RENUM_H
 #include "renum.h"

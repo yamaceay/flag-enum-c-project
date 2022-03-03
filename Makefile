@@ -57,10 +57,10 @@ RM = /usr/local/Cellar/cmake/3.22.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Applications/uni/rnvs/reflag
+CMAKE_SOURCE_DIR = /Users/macbook/git/reflag
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Applications/uni/rnvs/reflag
+CMAKE_BINARY_DIR = /Users/macbook/git/reflag
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Applications/uni/rnvs/reflag/CMakeFiles /Applications/uni/rnvs/reflag//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/macbook/git/reflag/CMakeFiles /Users/macbook/git/reflag//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Applications/uni/rnvs/reflag/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/macbook/git/reflag/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -214,32 +214,6 @@ flag-test-run/fast:
 .PHONY : flag-test-run/fast
 
 #=============================================================================
-# Target rules for targets named enum-test
-
-# Build rule for target.
-enum-test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 enum-test
-.PHONY : enum-test
-
-# fast build rule for target.
-enum-test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/build
-.PHONY : enum-test/fast
-
-#=============================================================================
-# Target rules for targets named enum-test-run
-
-# Build rule for target.
-enum-test-run: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 enum-test-run
-.PHONY : enum-test-run
-
-# fast build rule for target.
-enum-test-run/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test-run.dir/build.make CMakeFiles/enum-test-run.dir/build
-.PHONY : enum-test-run/fast
-
-#=============================================================================
 # Target rules for targets named renum-test
 
 # Build rule for target.
@@ -288,30 +262,6 @@ src/bool.s: src/bool.c.s
 src/bool.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/bool.c.s
 .PHONY : src/bool.c.s
-
-src/enum.o: src/enum.c.o
-.PHONY : src/enum.o
-
-# target to build an object file
-src/enum.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/enum.c.o
-.PHONY : src/enum.c.o
-
-src/enum.i: src/enum.c.i
-.PHONY : src/enum.i
-
-# target to preprocess a source file
-src/enum.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/enum.c.i
-.PHONY : src/enum.c.i
-
-src/enum.s: src/enum.c.s
-.PHONY : src/enum.s
-
-# target to generate assembly for a file
-src/enum.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/enum.c.s
-.PHONY : src/enum.c.s
 
 src/flag.o: src/flag.c.o
 .PHONY : src/flag.o
@@ -385,30 +335,6 @@ src/renum.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/reflag.dir/build.make CMakeFiles/reflag.dir/src/renum.c.s
 .PHONY : src/renum.c.s
 
-test/enum-test.o: test/enum-test.c.o
-.PHONY : test/enum-test.o
-
-# target to build an object file
-test/enum-test.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/test/enum-test.c.o
-.PHONY : test/enum-test.c.o
-
-test/enum-test.i: test/enum-test.c.i
-.PHONY : test/enum-test.i
-
-# target to preprocess a source file
-test/enum-test.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/test/enum-test.c.i
-.PHONY : test/enum-test.c.i
-
-test/enum-test.s: test/enum-test.c.s
-.PHONY : test/enum-test.s
-
-# target to generate assembly for a file
-test/enum-test.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/enum-test.dir/build.make CMakeFiles/enum-test.dir/test/enum-test.c.s
-.PHONY : test/enum-test.c.s
-
 test/flag-test.o: test/flag-test.c.o
 .PHONY : test/flag-test.o
 
@@ -469,10 +395,8 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... enum-test-run"
 	@echo "... flag-test-run"
 	@echo "... renum-test-run"
-	@echo "... enum-test"
 	@echo "... flag-test"
 	@echo "... input"
 	@echo "... reflag"
@@ -480,9 +404,6 @@ help:
 	@echo "... src/bool.o"
 	@echo "... src/bool.i"
 	@echo "... src/bool.s"
-	@echo "... src/enum.o"
-	@echo "... src/enum.i"
-	@echo "... src/enum.s"
 	@echo "... src/flag.o"
 	@echo "... src/flag.i"
 	@echo "... src/flag.s"
@@ -492,9 +413,6 @@ help:
 	@echo "... src/renum.o"
 	@echo "... src/renum.i"
 	@echo "... src/renum.s"
-	@echo "... test/enum-test.o"
-	@echo "... test/enum-test.i"
-	@echo "... test/enum-test.s"
 	@echo "... test/flag-test.o"
 	@echo "... test/flag-test.i"
 	@echo "... test/flag-test.s"
